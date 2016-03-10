@@ -25,6 +25,7 @@ public class Mark {
         Boolean running = true;
         String password = "password";
         int blank = 0;
+        System.out.println("Welcome to mark program");
         try {
             String in;
             Scanner sc = new Scanner(System.in);
