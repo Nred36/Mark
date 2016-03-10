@@ -57,12 +57,12 @@ public class Mark {
 
             System.out.println("Student (s) or Teacher (t)");
             in = sc.nextLine();
-            if ("s".equals(in) || "student".equalsIgnoreCase(in)) {
+            if ("s".equalsIgnoreCase(in) || "student".equalsIgnoreCase(in)) {
                 System.out.println("Please input Your Name");
                 in = sc.nextLine();
                 int i;
                 for (i = 0; i < blank; i++) {
-                    if (array[i].equals(in)) {
+                    if (array[i].equalsIgnoreCase(in)) {
                         System.out.println("Your mark is: " + array[i + 1] + "%");
                         i = 25;
                     }
@@ -71,7 +71,7 @@ public class Mark {
                     System.out.println("Name Not Found");
                 }
                 running = false;
-            } else if ("t".equals(in) || "teacher".equalsIgnoreCase(in)) {
+            } else if ("t".equalsIgnoreCase(in) || "teacher".equalsIgnoreCase(in)) {
                 System.out.println("Please input the password");
                 in = sc.nextLine();
                 if (in.equals(password)) {
@@ -95,7 +95,7 @@ public class Mark {
                                 in = sc.nextLine();
                                 array[blank + 1] = in;
                                 blank += 2;
-                            } else if (in.equals("2")) {//REMOVE STUDENT
+                            } else if (in.equalsIgnoreCase("2")) {//REMOVE STUDENT
                                 System.out.println("Please input A Student's Name");
                                 in = sc.nextLine();
                                 for (int i = 0; i < 30; i++) {
@@ -103,9 +103,10 @@ public class Mark {
                                         array[i] = null;
                                         array[i + 1] = "";
                                         i = 25;
+                                        blank -= 2;
                                     }
                                 }
-                            } else if (in.equals("3")) {//CHANGE MARK                                
+                            } else if (in.equalsIgnoreCase("3")) {//CHANGE MARK                                
                                 System.out.println("Please input A Student's Name");
                                 in = sc.nextLine();
                                 for (int i = 0; i < 30; i++) {
@@ -115,8 +116,11 @@ public class Mark {
                                         in = sc.nextLine();
                                         array[i + 1] = in;
                                         i = 25;
-                                    } else {
+                                    }
+                                    if (i < 21) {
                                         System.out.println("Name Not Found");
+                                        System.out.println("Press enter to continue");
+                                        sc.nextLine();
                                     }
                                 }
                             } else if (in.equals("4")) {//CLASS AVERAGE
@@ -125,14 +129,20 @@ public class Mark {
                                     average += Integer.parseInt(array[i]);
                                 }
                                 System.out.println("The class average is: " + average / (blank / 2) + "%");
+                                System.out.println("Press enter to continue");
+                                sc.nextLine();
                             } else if (in.equals("5")) {//LIST CLASS
-                                for (int i = 1; i < blank; i++) {
+                                for (int i = 0; i < blank; i += 2) {
                                     System.out.println(array[i]);
                                 }
+                                System.out.println("Press enter to continue");
+                                sc.nextLine();
                             } else if (in.equals("6")) {//WIPE
                                 for (int i = 0; i < 30; i++) {
                                     array[i] = null;
                                 }
+                                System.out.println("Press enter to continue");
+                                sc.nextLine();
                             } else if (in.equals("7")) {//EXIT
                                 running = false;
                             }
@@ -142,7 +152,7 @@ public class Mark {
                     System.out.println("ACCESS DENIED");
 
                 }
-                FileWriter fw = new FileWriter("Marks.txt");
+                FileWriter fw = new FileWriter("Marks.txt");//WRITING TO FILE
                 BufferedWriter bw = new BufferedWriter(fw);
                 for (int i = 0; i < blank; i++) {
                     if (!array[i].equals("")) {
