@@ -76,7 +76,9 @@ public class Mark {
                 in = sc.nextLine();
                 if (in.equals(password)) {
                     do {
-                        if (blank == 0) {
+                        System.out.println("Please input one of the following\n1: Add Student\n2: Remove Student\n3: Change Mark\n4: Get class average\n5: List class\n6: Wipe class\n7: Exit");
+                        in = sc.nextLine();
+                        if (in.equals("1")) {//ADD STUDENT                                
                             System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
                             array[blank] = in;
@@ -84,68 +86,60 @@ public class Mark {
                             in = sc.nextLine();
                             array[blank + 1] = in;
                             blank += 2;
-                        } else {
-                            System.out.println("Please input one of the following\n1: Add Student\n2: Remove Student\n3: Change Mark\n4: Get class average\n5: List class\n6: Wipe class\n7: Exit");
+                        } else if (in.equalsIgnoreCase("2")) {//REMOVE STUDENT
+                            System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
-                            if (in.equals("1")) {//ADD STUDENT                                
-                                System.out.println("Please input A Student's Name");
-                                in = sc.nextLine();
-                                array[blank] = in;
-                                System.out.println("What is their mark?");
-                                in = sc.nextLine();
-                                array[blank + 1] = in;
-                                blank += 2;
-                            } else if (in.equalsIgnoreCase("2")) {//REMOVE STUDENT
-                                System.out.println("Please input A Student's Name");
-                                in = sc.nextLine();
-                                for (int i = 0; i < 30; i++) {
-                                    if ((array[i] + "").equals(in + "")) {
-                                        array[i] = null;
-                                        array[i + 1] = "";
-                                        i = 25;
-                                        blank -= 2;
-                                    }
-                                }
-                            } else if (in.equalsIgnoreCase("3")) {//CHANGE MARK                                
-                                System.out.println("Please input A Student's Name");
-                                in = sc.nextLine();
-                                for (int i = 0; i < 30; i++) {
-                                    if ((array[i] + "").equals(in + "")) {
-                                        System.out.println("Current mark " + array[i + 1] + "%");
-                                        System.out.println("What is their new mark?");
-                                        in = sc.nextLine();
-                                        array[i + 1] = in;
-                                        i = 25;
-                                    }
-                                    if (i < 21) {
-                                        System.out.println("Name Not Found");
-                                        System.out.println("Press enter to continue");
-                                        sc.nextLine();
-                                    }
-                                }
-                            } else if (in.equals("4")) {//CLASS AVERAGE
-                                double average = 0;
-                                for (int i = 1; i < blank; i += 2) {
-                                    average += Integer.parseInt(array[i]);
-                                }
-                                System.out.println("The class average is: " + average / (blank / 2) + "%");
-                                System.out.println("Press enter to continue");
-                                sc.nextLine();
-                            } else if (in.equals("5")) {//LIST CLASS
-                                for (int i = 0; i < blank; i += 2) {
-                                    System.out.println(array[i]);
-                                }
-                                System.out.println("Press enter to continue");
-                                sc.nextLine();
-                            } else if (in.equals("6")) {//WIPE
-                                for (int i = 0; i < 30; i++) {
+                            for (int i = 0; i < 30; i++) {
+                                if ((array[i] + "").equals(in + "")) {
                                     array[i] = null;
+                                    array[i + 1] = "";
+                                    i = 25;
+                                    blank -= 2;
                                 }
-                                System.out.println("Press enter to continue");
-                                sc.nextLine();
-                            } else if (in.equals("7")) {//EXIT
-                                running = false;
                             }
+                        } else if (in.equalsIgnoreCase("3")) {//CHANGE MARK                                
+                            System.out.println("Please input A Student's Name");
+                            in = sc.nextLine();
+                            for (int i = 0; i < 30; i++) {
+                                if ((array[i] + "").equals(in + "")) {
+                                    System.out.println("Current mark " + array[i + 1] + "%");
+                                    System.out.println("What is their new mark?");
+                                    in = sc.nextLine();
+                                    array[i + 1] = in;
+                                    i = 25;
+                                }
+                                if (i < 21) {
+                                    System.out.println("Name Not Found");
+                                    System.out.println("Press enter to continue");
+                                    sc.nextLine();
+                                }
+                            }
+                        } else if (in.equals("4")) {//CLASS AVERAGE
+                            double average = 0;
+                            for (int i = 1; i < blank; i += 2) {
+                                average += Integer.parseInt(array[i]);
+                            }
+                            System.out.println("The class average is: " + average / (blank / 2) + "%");
+                            System.out.println("Press enter to continue");
+                            sc.nextLine();
+                        } else if (in.equals("5")) {//LIST CLASS
+                            for (int i = 0; i < blank; i += 2) {
+                                System.out.println(array[i]);
+                            }
+                            System.out.println("Press enter to continue");
+                            sc.nextLine();
+                        } else if (in.equals("6")) {//WIPE
+                            for (int i = 0; i < 30; i++) {
+                                array[i] = null;
+                            }
+                            blank = 0;
+                            System.out.println("Would you like to keep the same password?");
+                            in=sc.nextLine();
+                            if(in.equalsIgnoreCase("n")){
+                                
+                            }
+                        } else if (in.equals("7")) {//EXIT
+                            running = false;
                         }
                     } while (running == true);
                 } else {
