@@ -35,11 +35,11 @@ public class Mark {
             for (int i = 0; i < 32; i++) {
                 stay = br.readLine() + "";
                 if (stay.equals("<<>>")) {
-                    password = br.readLine();                    
-                    i = 45;                    
+                    password = br.readLine();
+                    i = 45;
                 } else if (!stay.equals("null")) {
                     array[i] = stay;
-                    blank++;    
+                    blank++;
                 } else if (stay.equals("null")) {
                 } else {
                     blank = 0;
@@ -54,7 +54,7 @@ public class Mark {
                 bw.newLine();
                 bw.write(password);
             }
-            
+
             System.out.println("Student (s) or Teacher (t)");
             in = sc.nextLine();
             if ("s".equals(in) || "student".equalsIgnoreCase(in)) {
@@ -63,7 +63,7 @@ public class Mark {
                 int i;
                 for (i = 0; i < blank; i++) {
                     if (array[i].equals(in)) {
-                        System.out.println("Your mark is: " + array[i + 1]);
+                        System.out.println("Your mark is: " + array[i + 1] + "%");
                         i = 25;
                     }
                 }
@@ -71,11 +71,11 @@ public class Mark {
                     System.out.println("Name Not Found");
                 }
                 running = false;
-            } else if ("t".equals(in) || "teacher".equalsIgnoreCase(in)) {                
+            } else if ("t".equals(in) || "teacher".equalsIgnoreCase(in)) {
                 System.out.println("Please input the password");
                 in = sc.nextLine();
                 if (in.equals(password)) {
-                    do {                        
+                    do {
                         if (blank == 0) {
                             System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
@@ -105,14 +105,18 @@ public class Mark {
                                         i = 25;
                                     }
                                 }
-                            } else if (in.equals("3")) {//CHANGE MARK
+                            } else if (in.equals("3")) {//CHANGE MARK                                
                                 System.out.println("Please input A Student's Name");
+                                in = sc.nextLine();
                                 for (int i = 0; i < 30; i++) {
                                     if ((array[i] + "").equals(in + "")) {
-                                        System.out.println(array[i + 1]);
+                                        System.out.println("Current mark " + array[i + 1] + "%");
                                         System.out.println("What is their new mark?");
+                                        in = sc.nextLine();
                                         array[i + 1] = in;
                                         i = 25;
+                                    } else {
+                                        System.out.println("Name Not Found");
                                     }
                                 }
                             } else if (in.equals("4")) {//CLASS AVERAGE
@@ -120,7 +124,7 @@ public class Mark {
                                 for (int i = 1; i < blank; i += 2) {
                                     average += Integer.parseInt(array[i]);
                                 }
-                                System.out.println("The class average is: " + average / (blank / 2));
+                                System.out.println("The class average is: " + average / (blank / 2) + "%");
                             } else if (in.equals("5")) {//LIST CLASS
                                 for (int i = 1; i < blank; i++) {
                                     System.out.println(array[i]);
