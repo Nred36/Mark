@@ -101,7 +101,8 @@ public class Mark {
                         } else if (in.equalsIgnoreCase("3")) {//CHANGE MARK                                
                             System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
-                            for (int i = 0; i < 30; i++) {
+                            int i;
+                            for (i = 0; i < 30; i++) {
                                 if ((array[i] + "").equals(in + "")) {
                                     System.out.println("Current mark " + array[i + 1] + "%");
                                     System.out.println("What is their new mark?");
@@ -109,11 +110,11 @@ public class Mark {
                                     array[i + 1] = in;
                                     i = 25;
                                 }
-                                if (i < 21) {
-                                    System.out.println("Name Not Found");
-                                    System.out.println("Press enter to continue");
-                                    sc.nextLine();
-                                }
+                            }
+                            if (i < 21) {
+                                System.out.println("Name Not Found");
+                                System.out.println("Press enter to continue");
+                                sc.nextLine();
                             }
                         } else if (in.equals("4")) {//CLASS AVERAGE
                             double average = 0;
@@ -125,7 +126,7 @@ public class Mark {
                             sc.nextLine();
                         } else if (in.equals("5")) {//LIST CLASS
                             for (int i = 0; i < blank; i += 2) {
-                                System.out.println(array[i]);
+                                System.out.println(array[i]+": "+array[i+1]+"%");
                             }
                             System.out.println("Press enter to continue");
                             sc.nextLine();
@@ -135,9 +136,9 @@ public class Mark {
                             }
                             blank = 0;
                             System.out.println("Would you like to keep the same password?");
-                            in=sc.nextLine();
-                            if(in.equalsIgnoreCase("n")){
-                                
+                            in = sc.nextLine();
+                            if (in.equalsIgnoreCase("n")) {
+
                             }
                         } else if (in.equals("7")) {//EXIT
                             running = false;
