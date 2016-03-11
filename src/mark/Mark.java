@@ -91,6 +91,9 @@ public class Mark {
                                 blank += 2;
                             } catch (InputMismatchException e) {
                                 System.err.println("Mark Could not be added");
+                                System.out.println("Press enter to continue");
+                                sc.nextLine();
+
                             }
                         } else if (in.equalsIgnoreCase("2")) {//REMOVE STUDENT
                             System.out.println("Please input A Student's Name");
@@ -115,6 +118,8 @@ public class Mark {
                                         in = String.valueOf(sc.nextInt());
                                     } catch (InputMismatchException e) {
                                         System.err.println("Mark Could not be added");
+                                        System.out.println("Press enter to continue");
+                                        sc.nextLine();
                                     }
                                     array[i + 1] = in;
                                     i = 25;
