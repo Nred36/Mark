@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -82,11 +83,15 @@ public class Mark {
                         if (in.equals("1")) {//ADD STUDENT                                
                             System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
-                            array[blank] = in;
                             System.out.println("What is their mark?");
-                            in = sc.nextLine();
-                            array[blank + 1] = in;
-                            blank += 2;
+                            try {
+                                array[blank] = in;
+                                in = String.valueOf(sc.nextInt());
+                                array[blank + 1] = in;
+                                blank += 2;
+                            } catch (InputMismatchException e) {
+                                System.err.println("Mark Could not be added");
+                            }
                         } else if (in.equalsIgnoreCase("2")) {//REMOVE STUDENT
                             System.out.println("Please input A Student's Name");
                             in = sc.nextLine();
@@ -106,7 +111,11 @@ public class Mark {
                                 if ((array[i] + "").equals(in + "")) {
                                     System.out.println("Current mark " + array[i + 1] + "%");
                                     System.out.println("What is their new mark?");
-                                    in = sc.nextLine();
+                                    try {
+                                        in = String.valueOf(sc.nextInt());
+                                    } catch (InputMismatchException e) {
+                                        System.err.println("Mark Could not be added");
+                                    }
                                     array[i + 1] = in;
                                     i = 25;
                                 }
@@ -126,7 +135,7 @@ public class Mark {
                             sc.nextLine();
                         } else if (in.equals("5")) {//LIST CLASS
                             for (int i = 0; i < blank; i += 2) {
-                                System.out.println(array[i]+": "+array[i+1]+"%");
+                                System.out.println(array[i] + ": " + array[i + 1] + "%");
                             }
                             System.out.println("Press enter to continue");
                             sc.nextLine();
